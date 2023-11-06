@@ -45,7 +45,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             //TextInput()
-            CircularImage()
+           // CircularImage()
+            PreviewItem()
         }
     }
 }
