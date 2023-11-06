@@ -5,8 +5,16 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -17,7 +25,9 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
@@ -35,12 +45,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             //TextInput()
+            CircularImage()
         }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
+@Preview(showBackground = true, heightDp = 500, widthDp = 300)
 @Composable
 fun previewFun() {
    /* Text(
@@ -78,14 +89,94 @@ fun previewFun() {
         )*/
 
 
+/*
 
-    Column {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(text = "A", fontSize = 24.sp)
-        Text(text = "A", fontSize = 24.sp)
+        Text(text = "B", fontSize = 24.sp)
     }
+*/
+
+/*
+    Row(
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(text = "A", fontSize = 24.sp)
+        Text(text = "B", fontSize = 24.sp)
+    }
+*/
+/*
+
+    //Box is Similar to Framelayout
+    Box(
+        contentAlignment = Alignment.Center
+    ) {
+        Image(painter = painterResource(id = R.drawable.heart), contentDescription = "")
+        Image(painter = painterResource(id = R.drawable.arrow), contentDescription = "")
+    }
+*/
+
+/*
+    Column {
+        ListView(R.drawable.heart,"Sangam Nayak","Software Developer")
+        ListView(R.drawable.heart,"Sangam Nayak","Software Developer")
+        ListView(R.drawable.heart,"Sangam Nayak","Software Developer")
+        ListView(R.drawable.heart,"Sangam Nayak","Software Developer")
+    }
+*/
+
+    Text(
+        text = "Hello",
+        color = Color.White,
+        modifier = Modifier
+            .background(Color.Red)
+            .size(50.dp)
+            .border(4.dp, Color.Green)
+            .clip(CircleShape)
+            .background(Color.Yellow)
+    )
+
 
 }
 
+@Composable
+fun CircularImage(){
+    Image(
+        painter = painterResource(id = R.drawable.heart),
+        contentScale = ContentScale.Crop,
+        modifier = Modifier
+            .size(80.dp)
+            .clip(CircleShape)
+            .border(2.dp, Color.LightGray, CircleShape),
+        contentDescription = ""
+    )
+}
+
+@Composable
+fun ListView(imageId:Int, name:String, occupation:String){
+    Row(Modifier.padding(8.dp)) {
+        Image(
+            painter = painterResource(id = imageId),
+            contentDescription = "",
+            Modifier.size(40.dp)
+        )
+        Column {
+            Text(
+                text = name,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text = occupation,
+                fontWeight = FontWeight.Thin,
+                fontSize = 12.sp
+            )
+        }
+    }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
