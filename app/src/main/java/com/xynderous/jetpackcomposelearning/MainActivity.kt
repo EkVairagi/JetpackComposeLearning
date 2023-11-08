@@ -46,7 +46,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             //TextInput()
            // CircularImage()
-            PreviewItem()
+            //PreviewItem()
+
+            //Recomposable()
+            NotificationScreen()
         }
     }
 }
@@ -193,4 +196,16 @@ fun TextInput(){
         },
         label = { Text(text = "Enter message")},
     )
+}
+
+
+@Composable
+fun Recomposable() {
+    val state = remember { mutableStateOf(0.0) }
+    Log.d("TAGGED","Logged during initial composition")
+    Button(onClick = { state.value = Math.random() }) {
+        Log.d("TAGGED","Logged during both Composition and Recomposition")
+        Text(text = state.value.toString())
+    }
+
 }
